@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:tikytokky/views/screens/login_screens.dart';
+import 'package:image_picker/image_picker.dart';
 
 import '../../constants.dart';
 import '../widgets/text_input.dart';
+import '../../controller/auth_controller.dart';
 
 class SignupScreen extends StatelessWidget {
   const SignupScreen({Key? key}) : super(key: key);
@@ -11,6 +14,14 @@ class SignupScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     TextEditingController username_controller = TextEditingController();
     TextEditingController password_controller = TextEditingController();
+    TextEditingController password2_controller = TextEditingController();
+    TextEditingController email_controller = TextEditingController();
+    String filePath;  
+
+showSnackBar(String text, BuildContext context) {
+  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(text)));
+}
+
 
 
     return Scaffold(
@@ -50,7 +61,7 @@ class SignupScreen extends StatelessWidget {
                     ),
                     Positioned(
                       child: IconButton(
-                        onPressed: () {},
+                        onPressed: authController.pickImage(),
                         icon: Icon(Icons.add_a_photo),
                       ),
                       bottom: -10,
@@ -69,7 +80,7 @@ class SignupScreen extends StatelessWidget {
                       icon: Icons.person,
                       isPassword: false,
                       labelText: "Username",
-                      controller: password_controller,
+                      controller: username_controller,
                     )),
                 SizedBox(
                   height: 25,
@@ -82,7 +93,7 @@ class SignupScreen extends StatelessWidget {
                       icon: Icons.email,
                       isPassword: false,
                       labelText: "Email",
-                      controller: username_controller,
+                      controller: email_controller,
                     )),
                 SizedBox(
                   height: 25,
@@ -108,7 +119,7 @@ class SignupScreen extends StatelessWidget {
                       icon: Icons.lock,
                       isPassword: true,
                       labelText: "Repeat Password ",
-                      controller: password_controller,
+                      controller: password2_controller,
                     )),
                 SizedBox(
                   height: 32,
@@ -120,10 +131,10 @@ class SignupScreen extends StatelessWidget {
                       color: buttonColor,
                       borderRadius: BorderRadius.all(Radius.circular(5))),
                   child: InkWell(
-                    onTap: () {},
-                    child: Center(
+                    onTap: ()=>authController.register(username_controller.text, email_controller.text, password_controller.text, authController.profilePhoto),
+                    child: const Center(
                       child: Text(
-                        "Login",
+                        "Register",
                         style: TextStyle(
                             fontSize: 20, fontWeight: FontWeight.w700),
                       ),

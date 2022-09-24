@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1095246823527",
+    "project_id": "tickytok-f21f2",
+    "storage_bucket": "tickytok-f21f2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1095246823527:android:c55c4b5ccf71ba62b554c2",
+        "android_client_info": {
+          "package_name": "com.example.tikytokky"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1095246823527-4dmil8345l3knsj090csgr12facc5a1c.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrKzv3InlPOlc2AWTDTgkxlmMjkcArhT0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1095246823527-4dmil8345l3knsj090csgr12facc5a1c.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

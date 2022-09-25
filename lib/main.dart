@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'package:tikytokky/controller/auth_controller.dart';
 import 'package:tikytokky/firebase_options.dart';
+import 'package:tikytokky/views/screens/login_screen.dart';
 
 import './views/screens/login_screens.dart';
 import 'package:tikytokky/constants.dart';
@@ -29,7 +30,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData.dark().copyWith(
         scaffoldBackgroundColor: backgroundColor,
       ),
-      home: LoginScreen(),
+      home: AuthenticationScreen(),
     );
   }
 }

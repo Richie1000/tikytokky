@@ -16,13 +16,11 @@ class SignupScreen extends StatelessWidget {
     TextEditingController password_controller = TextEditingController();
     TextEditingController password2_controller = TextEditingController();
     TextEditingController email_controller = TextEditingController();
-    String filePath;  
+    String filePath;
 
-showSnackBar(String text, BuildContext context) {
-  ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(text)));
-}
-
-
+    showSnackBar(String text, BuildContext context) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(text)));
+    }
 
     return Scaffold(
       appBar: AppBar(
@@ -55,13 +53,13 @@ showSnackBar(String text, BuildContext context) {
                 ),
                 Stack(
                   children: [
-                    CircleAvatar(
+                     CircleAvatar(
                       radius: 60,
                       backgroundImage: AssetImage("assets/defaultpic.jpg"),
                     ),
                     Positioned(
                       child: IconButton(
-                        onPressed: authController.pickImage(),
+                        onPressed: () => authController.pickImage(),
                         icon: Icon(Icons.add_a_photo),
                       ),
                       bottom: -10,
@@ -131,7 +129,12 @@ showSnackBar(String text, BuildContext context) {
                       color: buttonColor,
                       borderRadius: BorderRadius.all(Radius.circular(5))),
                   child: InkWell(
-                    onTap: ()=>authController.register(username_controller.text, email_controller.text, password_controller.text, authController.profilePhoto),
+                    onTap: () => authController.register(
+                        username_controller.text,
+                        email_controller.text,
+                        password_controller.text,
+                        authController.profilePhoto),
+                    
                     child: const Center(
                       child: Text(
                         "Register",

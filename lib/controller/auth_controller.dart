@@ -40,7 +40,7 @@ class AuthController extends GetxController{
 }
 
   //registeration of user 
-  void register(String username,String email, String password, File? image)async{
+  register(String username,String email, String password, File? image)async{
     try{
        if (username.isNotEmpty && email.isNotEmpty && password.isNotEmpty && image != null){
           UserCredential userCredential = await firebaseAuth.createUserWithEmailAndPassword(email: email, password: password);

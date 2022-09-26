@@ -3,16 +3,15 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:get/get.dart';
 import 'package:tikytokky/controller/auth_controller.dart';
 import 'package:tikytokky/firebase_options.dart';
-import 'package:tikytokky/views/screens/login_screen.dart';
+import 'package:tikytokky/views/screens/auth_screen.dart';
 
 import './views/screens/login_screens.dart';
 import 'package:tikytokky/constants.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform
-  ).then((value){
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform)
+      .then((value) {
     Get.put(AuthController());
   });
   runApp(const MyApp());
@@ -34,4 +33,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

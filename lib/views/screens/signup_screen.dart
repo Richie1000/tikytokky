@@ -53,7 +53,7 @@ class SignupScreen extends StatelessWidget {
                 ),
                 Stack(
                   children: [
-                     CircleAvatar(
+                    CircleAvatar(
                       radius: 60,
                       backgroundImage: AssetImage("assets/defaultpic.jpg"),
                     ),
@@ -134,7 +134,6 @@ class SignupScreen extends StatelessWidget {
                         email_controller.text,
                         password_controller.text,
                         authController.profilePhoto),
-                    
                     child: const Center(
                       child: Text(
                         "Register",
@@ -150,7 +149,7 @@ class SignupScreen extends StatelessWidget {
                 Row(
                   children: [
                     const Text(
-                      "Already Have an Account?   ",
+                      "   Already Have an Account?   ",
                       style: TextStyle(fontSize: 20),
                     ),
                     InkWell(

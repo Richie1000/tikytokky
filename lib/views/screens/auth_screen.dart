@@ -16,7 +16,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
 
   bool isLogin = false;
 
-  void changeAuth(){
+  void changeAuth() {
     setState(() {
       isLogin = !isLogin;
     });
@@ -46,7 +46,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                           fontWeight: FontWeight.w900),
                     ),
                     Text(
-                      isLogin? "Login" : "Sign Up",
+                      isLogin ? "Login" : "Sign Up",
                       style: TextStyle(
                           fontSize: 24,
                           color: buttonColor,
@@ -56,27 +56,28 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                       height: 25,
                     ),
                     if (isLogin == false)
-                    Stack(
-                      children: [
-                        CircleAvatar(
-                          radius: 60,
-                          backgroundImage: AssetImage("assets/defaultpic.jpg"),
-                        ),
-                        Positioned(
-                          child: IconButton(
-                            onPressed: () => authController.pickImage(),
-                            icon: Icon(Icons.add_a_photo),
+                      Stack(
+                        children: [
+                          CircleAvatar(
+                            radius: 60,
+                            backgroundImage:
+                                AssetImage("assets/defaultpic.jpg"),
                           ),
-                          bottom: -10,
-                          left: 80,
-                        )
-                      ],
-                    ),
+                          Positioned(
+                            child: IconButton(
+                              onPressed: () => authController.pickImage(),
+                              icon: Icon(Icons.add_a_photo),
+                            ),
+                            bottom: -10,
+                            left: 80,
+                          )
+                        ],
+                      ),
                     SizedBox(
                       height: 10,
                     ),
                     TextFormField(
-                      controller: username_controller,
+                      controller: email_controller,
                       decoration: InputDecoration(
                         prefixIcon: Icon(Icons.person),
                         hintText: "Email",
@@ -95,24 +96,24 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                     SizedBox(
                       height: 20,
                     ),
-                    if(!isLogin)
-                    TextFormField(
-                      controller: email_controller,
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(Icons.mail),
-                        hintText: "Username",
-                        labelText: "Username",
-                        labelStyle: const TextStyle(fontSize: 20),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                          borderSide: BorderSide(color: borderColor),
-                        ),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(5),
-                          borderSide: const BorderSide(color: borderColor),
+                    if (!isLogin)
+                      TextFormField(
+                        controller: username_controller,
+                        decoration: InputDecoration(
+                          prefixIcon: Icon(Icons.mail),
+                          hintText: "Username",
+                          labelText: "Username",
+                          labelStyle: const TextStyle(fontSize: 20),
+                          focusedBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                            borderSide: BorderSide(color: borderColor),
+                          ),
+                          enabledBorder: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(5),
+                            borderSide: const BorderSide(color: borderColor),
+                          ),
                         ),
                       ),
-                    ),
                     SizedBox(
                       height: 20,
                     ),
@@ -145,17 +146,19 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                         borderRadius: BorderRadius.all(Radius.circular(5)),
                       ),
                       child: InkWell(
-                        // onTap: () => authController.register(
-                        //     username_controller.text,
-                        //     email_controller.text,
-                        //     password_controller.text,
-                        //     authController.profilePhoto),
-                  
+                        onTap: !isLogin
+                            ? () => authController.register(
+                                username_controller.text,
+                                email_controller.text,
+                                password_controller.text,
+                                authController.profilePhoto)
+                            : () => authController.login(email_controller.text,
+                                password_controller.text),
                         child: Center(
-                          child: Text( isLogin? "Login":
-                            "Register",
-                            style:
-                                TextStyle(fontSize: 20, fontWeight: FontWeight.w700),
+                          child: Text(
+                            isLogin ? "Login" : "Register",
+                            style: TextStyle(
+                                fontSize: 20, fontWeight: FontWeight.w700),
                           ),
                         ),
                       ),
@@ -163,39 +166,44 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                     const SizedBox(
                       height: 15,
                     ),
-                    if(isLogin)
-                    Row(
-                      children: [
-                        //if (isLogin)
-                        const Text(
-                          "Already Have an Account?   ",
-                          style: TextStyle(fontSize: 20),
-                        ),
-
-                        InkWell(
-                          // onTap: () {
-                          //   Navigator.push(
-                          //       context,
-                          //       MaterialPageRoute(
-                          //           builder: ((context) => const LoginScreen())));
-                          // },
-                          onTap: changeAuth,
-                          child: Text(
-                             "Register",
-                            style: TextStyle(fontSize: 20, color: buttonColor),
+                    if (isLogin)
+                      Row(
+                        children: [
+                          //if (isLogin)
+                          Text(
+                            !isLogin ? "  " : "Already Have an Account?   ",
+                            style: TextStyle(fontSize: 20),
                           ),
-                        ),
-                      ],
-                    ),
-                    if(!isLogin)
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        InkWell(
-                          onTap: changeAuth,
-                          child: Text("Login", style: TextStyle(fontSize: 20, color: buttonColor),))
-                      ],
-                    )
+
+                          InkWell(
+                            // onTap: () {
+                            //   Navigator.push(
+                            //       context,
+                            //       MaterialPageRoute(
+                            //           builder: ((context) => const LoginScreen())));
+                            // },
+                            onTap: changeAuth,
+                            child: Text(
+                              "Register",
+                              style:
+                                  TextStyle(fontSize: 20, color: buttonColor),
+                            ),
+                          ),
+                        ],
+                      ),
+                    if (!isLogin)
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          InkWell(
+                              onTap: changeAuth,
+                              child: Text(
+                                "Login",
+                                style:
+                                    TextStyle(fontSize: 20, color: buttonColor),
+                              ))
+                        ],
+                      )
                   ],
                 ),
               ),
